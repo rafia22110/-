@@ -443,44 +443,72 @@ export default function App() {
       {/* Meet Bottom Control Bar */}
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-4">
         <div className="flex items-center gap-3 bg-black/60 backdrop-blur-2xl border border-white/10 p-2 rounded-full shadow-2xl">
-          <button className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all">
-            <Mic className="w-5 h-5" />
-          </button>
-          <button className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all">
-            <Video className="w-5 h-5" />
-          </button>
+          {[
+            { Icon: Mic, label: "Toggle microphone" },
+            { Icon: Video, label: "Toggle video" }
+          ].map((btn, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={btn.label}
+              className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] outline-none"
+            >
+              <btn.Icon className="w-5 h-5" />
+            </button>
+          ))}
           
           {/* Reaction Picker */}
           <div className="relative group/reactions">
-            <button className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all">
+            <button
+              type="button"
+              aria-label="Send reaction"
+              className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] outline-none"
+            >
               <Sparkles className="w-5 h-5" />
             </button>
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 p-2 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl flex gap-2 opacity-0 group-hover/reactions:opacity-100 transition-all pointer-events-none group-hover/reactions:pointer-events-auto">
-              {['🔥', '💡', '👏', '❤️', '😂', '😮'].map(emoji => (
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 p-2 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl flex gap-2 opacity-0 group-hover/reactions:opacity-100 group-focus-within/reactions:opacity-100 transition-all pointer-events-none group-hover/reactions:pointer-events-auto group-focus-within/reactions:pointer-events-auto">
+              {[
+                { emoji: '🔥', label: 'Fire' },
+                { emoji: '💡', label: 'Idea' },
+                { emoji: '👏', label: 'Applause' },
+                { emoji: '❤️', label: 'Heart' },
+                { emoji: '😂', label: 'Laughing' },
+                { emoji: '😮', label: 'Surprised' }
+              ].map(item => (
                 <button 
-                  key={emoji} 
-                  onClick={() => setMyReaction(emoji)}
-                  className="w-10 h-10 rounded-xl hover:bg-white/10 flex items-center justify-center text-xl transition-all hover:scale-125"
+                  key={item.emoji}
+                  type="button"
+                  aria-label={item.label}
+                  onClick={() => setMyReaction(item.emoji)}
+                  className="w-10 h-10 rounded-xl hover:bg-white/10 flex items-center justify-center text-xl transition-all hover:scale-125 focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0f] outline-none"
                 >
-                  {emoji}
+                  {item.emoji}
                 </button>
               ))}
             </div>
           </div>
 
-          <button className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all">
-            <Hand className="w-5 h-5" />
-          </button>
-          <button className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all">
-            <Monitor className="w-5 h-5" />
-          </button>
-          <button className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all">
-            <MessageSquare className="w-5 h-5" />
-          </button>
-          <button className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all">
-            <MoreVertical className="w-5 h-5" />
-          </button>
-          <button className="p-4 rounded-full bg-red-500 hover:bg-red-600 text-white transition-all ml-2">
+          {[
+            { Icon: Hand, label: "Raise hand" },
+            { Icon: Monitor, label: "Present now" },
+            { Icon: MessageSquare, label: "Chat with everyone" },
+            { Icon: MoreVertical, label: "More options" }
+          ].map((btn, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={btn.label}
+              className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] outline-none"
+            >
+              <btn.Icon className="w-5 h-5" />
+            </button>
+          ))}
+
+          <button
+            type="button"
+            aria-label="Leave meeting"
+            className="p-4 rounded-full bg-red-500 hover:bg-red-600 text-white transition-all ml-2 focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] outline-none"
+          >
             <PhoneOff className="w-5 h-5" />
           </button>
         </div>
