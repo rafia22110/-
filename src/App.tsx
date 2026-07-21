@@ -183,7 +183,11 @@ export default function App() {
               </div>
 
               <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-3">
-                <button className="p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-white transition-all">
+                <button
+                  type="button"
+                  aria-label="Toggle fullscreen"
+                  className="p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] outline-none"
+                >
                   <Maximize2 className="w-4 h-4" />
                 </button>
                 
@@ -242,7 +246,14 @@ export default function App() {
                         <h4 className="micro-label text-[#00f2fe] mb-1 italic">AI Assistant</h4>
                         <p className="text-white text-sm leading-relaxed font-body" dir="rtl">{aiResponse}</p>
                       </div>
-                      <button onClick={() => setAiResponse(null)} className="text-white/20 hover:text-white p-1">✕</button>
+                      <button
+                        type="button"
+                        aria-label="Close notification"
+                        onClick={() => setAiResponse(null)}
+                        className="text-white/20 hover:text-white p-1 rounded focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] outline-none"
+                      >
+                        ✕
+                      </button>
                     </div>
                   </motion.div>
                 )}
@@ -396,8 +407,11 @@ export default function App() {
         </div>
         <div className="flex items-center gap-6">
           <button 
+            type="button"
+            aria-pressed={isMetaverseMode}
+            aria-label="Toggle Metaverse mode"
             onClick={() => setIsMetaverseMode(!isMetaverseMode)}
-            className={`flex items-center gap-2 px-4 py-1.5 rounded-full border transition-all ${
+            className={`flex items-center gap-2 px-4 py-1.5 rounded-full border transition-all focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] outline-none ${
               isMetaverseMode 
                 ? 'bg-[#00f2fe]/20 border-[#00f2fe]/50 text-[#00f2fe]' 
                 : 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10'
