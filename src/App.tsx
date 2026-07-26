@@ -183,7 +183,10 @@ export default function App() {
               </div>
 
               <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-3">
-                <button className="p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-white transition-all">
+                <button
+                  aria-label="Maximize view"
+                  className="p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:outline-none"
+                >
                   <Maximize2 className="w-4 h-4" />
                 </button>
                 
@@ -242,7 +245,13 @@ export default function App() {
                         <h4 className="micro-label text-[#00f2fe] mb-1 italic">AI Assistant</h4>
                         <p className="text-white text-sm leading-relaxed font-body" dir="rtl">{aiResponse}</p>
                       </div>
-                      <button onClick={() => setAiResponse(null)} className="text-white/20 hover:text-white p-1">✕</button>
+                      <button
+                        onClick={() => setAiResponse(null)}
+                        aria-label="Close AI response"
+                        className="text-white/20 hover:text-white p-1 focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:outline-none rounded-lg"
+                      >
+                        ✕
+                      </button>
                     </div>
                   </motion.div>
                 )}
@@ -260,7 +269,8 @@ export default function App() {
                   <button
                     key={tab.id}
                     onClick={() => setSidebarTab(tab.id as any)}
-                    className={`flex-1 py-4 flex flex-col items-center gap-1 transition-all relative ${
+                    aria-label={`${tab.label} tab`}
+                    className={`flex-1 py-4 flex flex-col items-center gap-1 transition-all relative focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:outline-none ${
                       sidebarTab === tab.id ? 'text-[#00f2fe]' : 'text-white/40 hover:text-white/60'
                     }`}
                   >
@@ -296,10 +306,11 @@ export default function App() {
 
                     {/* Students */}
                     {students.map(student => (
-                      <div 
+                      <button
                         key={student.id}
                         onClick={() => setFocusedStudentId(student.id)}
-                        className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 ${
+                        aria-label={`Focus on ${student.name}`}
+                        className={`w-full text-right p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:outline-none ${
                           focusedStudentId === student.id 
                             ? 'bg-[#00f2fe]/10 border-[#00f2fe]/30' 
                             : 'bg-transparent border-transparent hover:bg-white/5'
@@ -325,7 +336,7 @@ export default function App() {
                           {student.isRaisingHand && <Hand className="w-3 h-3 text-yellow-400" />}
                           <Mic className={`w-3 h-3 ${student.isSpeaking ? 'text-[#00f2fe]' : 'text-white/20'}`} />
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 )}
@@ -396,8 +407,11 @@ export default function App() {
         </div>
         <div className="flex items-center gap-6">
           <button 
+            type="button"
+            aria-pressed={isMetaverseMode}
+            aria-label="Toggle Metaverse mode"
             onClick={() => setIsMetaverseMode(!isMetaverseMode)}
-            className={`flex items-center gap-2 px-4 py-1.5 rounded-full border transition-all ${
+            className={`flex items-center gap-2 px-4 py-1.5 rounded-full border transition-all focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:outline-none ${
               isMetaverseMode 
                 ? 'bg-[#00f2fe]/20 border-[#00f2fe]/50 text-[#00f2fe]' 
                 : 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10'
