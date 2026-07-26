@@ -296,17 +296,19 @@ export default function App() {
 
                     {/* Students */}
                     {students.map(student => (
-                      <div 
+                      <button
                         key={student.id}
+                        type="button"
+                        aria-label={`Focus on ${student.name}`}
                         onClick={() => setFocusedStudentId(student.id)}
-                        className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 ${
+                        className={`w-full text-left p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ${
                           focusedStudentId === student.id 
                             ? 'bg-[#00f2fe]/10 border-[#00f2fe]/30' 
                             : 'bg-transparent border-transparent hover:bg-white/5'
                         }`}
                       >
                         <div 
-                          className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs relative"
+                          className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs relative shrink-0"
                           style={{ backgroundColor: student.color }}
                         >
                           {student.name[0]}
@@ -317,15 +319,15 @@ export default function App() {
                             <div className="absolute -top-1 -right-1 text-xs animate-bounce">{student.reaction}</div>
                           )}
                         </div>
-                        <div className="flex-1">
-                          <p className="text-white text-xs font-medium">{student.name}</p>
+                        <div className="flex-1 text-right">
+                          <p className="text-white text-xs font-medium truncate">{student.name}</p>
                           <p className="text-white/40 text-[10px]">{student.status}</p>
                         </div>
-                        <div className="flex gap-1">
+                        <div className="flex gap-1 shrink-0">
                           {student.isRaisingHand && <Hand className="w-3 h-3 text-yellow-400" />}
                           <Mic className={`w-3 h-3 ${student.isSpeaking ? 'text-[#00f2fe]' : 'text-white/20'}`} />
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 )}
@@ -452,18 +454,12 @@ export default function App() {
           
           {/* Reaction Picker */}
           <div className="relative group/reactions">
-            <button className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all">
+            <button type="button" aria-label="Send reaction" className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] outline-none">
               <Sparkles className="w-5 h-5" />
             </button>
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 p-2 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl flex gap-2 opacity-0 group-hover/reactions:opacity-100 transition-all pointer-events-none group-hover/reactions:pointer-events-auto">
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 p-2 bg-[#0a0a0f] backdrop-blur-xl border border-white/10 rounded-2xl flex gap-2 opacity-0 group-hover/reactions:opacity-100 group-focus-within/reactions:opacity-100 transition-all pointer-events-none group-hover/reactions:pointer-events-auto group-focus-within/reactions:pointer-events-auto">
               {['🔥', '💡', '👏', '❤️', '😂', '😮'].map(emoji => (
-                <button 
-                  key={emoji} 
-                  onClick={() => setMyReaction(emoji)}
-                  className="w-10 h-10 rounded-xl hover:bg-white/10 flex items-center justify-center text-xl transition-all hover:scale-125"
-                >
-                  {emoji}
-                </button>
+                <button key={emoji} type="button" aria-label={`Send ${emoji} reaction`} onClick={() => setMyReaction(emoji)} className="w-10 h-10 rounded-xl hover:bg-white/10 flex items-center justify-center text-xl transition-all hover:scale-125 focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0f] outline-none">{emoji}</button>
               ))}
             </div>
           </div>
