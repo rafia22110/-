@@ -407,6 +407,9 @@ export default function App() {
         </div>
         <div className="flex items-center gap-6">
           <button 
+            type="button"
+            aria-pressed={isMetaverseMode}
+            aria-label="Toggle Metaverse mode"
             onClick={() => setIsMetaverseMode(!isMetaverseMode)}
             className={`flex items-center gap-2 px-4 py-1.5 rounded-full border transition-all focus-visible:ring-2 focus-visible:ring-[#00f2fe] focus-visible:outline-none ${
               isMetaverseMode 
